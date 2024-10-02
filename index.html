@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrare</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background:url("https://res.cloudinary.com/doy5drimg/image/upload/v1727586793/rav1xabnot7vly8x48xw.jpg") no-repeat center center/cover; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            position: relative;
+            overflow: hidden; 
+            transition: background-image 0.5s ease; 
+        }
+
+        .bird {
+            width: 100px; 
+            cursor: pointer;
+            position: absolute;
+            height:100px;
+            border-radius:50%;
+            z-index: 1;
+            transition: transform 1s ease;
+        }
+        .container{
+            height:100vh;
+            display:flex;
+            flex-direction:row;
+            justify-content:center;
+            align-items:center;
+        }
+        .login-text{
+            display:flex;
+            flex-direction:row;
+            justify-content:flex-start;
+        }
+        .company-name{
+            padding-left:10px;
+            font-family:"Roboto";
+            color:rgb(89, 113, 219);
+        }
+        .login-logo{
+            height:70px;
+            width:80px;
+        }
+        .login-container {
+            display: none; 
+            flex-direction:row;
+            justify-content:space-between;
+            align-items:center;
+            width: 65%;
+            padding: 20px;
+            background: white; 
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            position: absolute;
+            opacity: 0; 
+            transition: opacity 0.5s ease;
+        }
+        .bottom-description{
+            margin-top:70px;
+            color:grey;
+            font-size:10px;
+            text-align:center;
+            font-family:"Roboto";
+        }
+        .bottom-des{
+            color:grey;
+            font-size:10px;
+            text-align:center;
+            font-family:"Roboto";
+        }
+        .enroll-button{
+            height:22px;
+            background-color:transparent;
+            margin-left:10px;
+            font-size:10px;
+            margin-top:25px;
+            border-style:solid;
+            font-weight:bold;
+            border-width:1px;
+            border-radius:30px;
+            color:rgb(21, 191, 21);
+        }
+        .welcome{
+            text-align:center;
+            font-family:"Roboto";
+            margin-bottom:1px;
+            font-size:25px;
+        }
+        .description{
+            text-align:center;
+            font-size:10px;
+            color:rgb(21, 191, 21);
+            font-weight:bold;
+        }
+        .para{
+            margin-top:0px;
+            font-size:12px;
+            color:grey;
+            text-align:center;
+        }
+        .query{
+            padding-top:15px;
+            margin-left:20px;
+            font-family:"Roboto";
+            color:grey;
+            font-size:12px;
+        }
+        .side-image{
+            display:inline-block;
+            width:40%;
+            padding-right:0px;
+            height:80vh;
+            margin-left:10px;
+            border-radius:7px;
+            padding-left:20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 10px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+            transition: border 0.3s, padding-top 0.3s;
+            font-size: 16px;
+        }
+
+        .input-group input:focus {
+            border-color: rgb(21, 191, 21);;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: white;
+            padding: 0 5px;
+            color: #aaa;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: -5px;
+            left: 10px;
+            font-size: 12px;
+            color: rgb(21, 191, 21);;
+        }
+
+        .input-group .show-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgb(21, 191, 21);
+            font-size: 14px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+        }
+
+        .checkbox-group input[type="checkbox"]:checked {
+            border-color: grey;
+            background-color: white;
+        }
+
+        .checkbox-group input[type="checkbox"]:checked::after {
+            content: "✔";
+            position: absolute;
+            top: 0px;
+            left: 2px;
+            font-size: 14px;
+            color: rgb(21, 191, 21);;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            color:grey;
+            margin-left: 10px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #ccc; /* Initial Grey Color */
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: not-allowed;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .login-btn.active {
+            background-color: #28a745; /* Green Color when Active */
+            cursor: pointer;
+        }
+
+        .loader {
+            border: 2px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 2px solid #fff;
+            width: 14px;
+            height: 14px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        .login-btn.loading .loader {
+            display: inline-block;
+        }
+
+        .login-btn.loading span {
+            opacity: 0; 
+            transform: translateX(20px); 
+            transition: opacity 0.3s, transform 0.3s; 
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+        @media (min-width: 768px) {
+            .mobile-container{
+                display:none;
+            }
+            .login-container {
+                padding: 15px;
+            }
+            .input-group input {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .input-group label {
+                font-size: 14px;
+            }
+
+            .login-btn {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-text{
+                margin-top:10px;
+                display:flex;
+                flex-direction:row;
+                justify-content: center;
+            }
+            .mobile-query{
+                padding-top:15px;
+                margin-left:20px;
+                font-family:"Roboto";
+                color:grey;
+                font-size:12px;
+            }
+            .mobile-enroll-button{
+                height:22px;
+                background-color:transparent;
+                margin-left:10px;
+                font-size:10px;
+                margin-top:25px;
+                border-style:solid;
+                font-weight:bold;
+                border-width:1px;
+                border-radius:30px;
+                color:rgb(21, 191, 21);
+            }
+            .show-password{
+                display:none;
+            }
+            .query{
+                display:none;
+            }
+            .login-container {
+                padding: 10px;
+                width:80%;
+            }
+            .enroll-button{
+                display:none;
+            }
+            .company-name{
+                display:none;
+            }
+
+            .input-group input {
+                font-size: 12px;
+                padding:10px;
+                width:80%;
+            }
+            .side-image{
+                display:none;
+            }
+            .input-group label {
+                font-size: 12px;
+            }
+
+            .login-btn {
+                font-size: 12px;
+                padding: 6px;
+            }
+            .mobile-des-container{
+                display:flex;
+                flex-direction:row;
+                justify-content: space-around;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://res.cloudinary.com/doy5drimg/image/upload/v1727586562/celebrare_logo_fvxxyi.jpg" alt="Bird" class="bird" id="bird" />
+    <!-----------------Login Page---------------->
+    <div class="container">
+        <div class="login-container" id="login-container">
+            <div>
+                <div class="login-text">
+                    <img class="login-logo" src="https://res.cloudinary.com/doy5drimg/image/upload/v1727586562/celebrare_logo_fvxxyi.jpg"/>
+                    <h2 class="company-name">Celebrare</h2>
+                    <p class="query">Are you a new customer?</p>
+                    <button class="enroll-button">Enroll Now</button>
+                </div>
+                <!-----------Form------------->
+                <form id="login-form">
+                    <h1 class="welcome">Welcome Back</h1>
+                    <p class="para">Sign in to your Celbrare account</p>
+                    <div class="input-group">
+                        <input type="text" id="username" name="username" placeholder=" " required>
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" name="password" placeholder=" " required>
+                        <label for="password">Password</label>
+                        <span class="show-password" onclick="togglePassword()">Show</span>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="remember-me" name="remember-me">
+                        <label for="remember-me">Remember me</label>
+                    </div>
+                    <button type="submit" class="login-btn" id="login-btn" disabled>
+                        <span>Login</span>
+                        <div class="loader"></div>
+                    </button>
+                </form>
+                
+                <p class="description">Forgot Online ID? - Forgot Password?</p>
+                <div class="mobile-container">
+                    <hr>
+                    <div class="mobile-des-container">
+                        <p class="mobile-query">Are you a new customer?</p>
+                        <button class="mobile-enroll-button">Enroll Now</button>
+                    </div>
+                </div>
+                <div>
+                    <p class="bottom-description">Equal Housing Lender - Member FDIC</p>
+                    <p class="bottom-des">@2023 Regions Financial Corporation. All Rights Reserved - <span style="color:rgb(21, 191, 21);">1(800) REGIONS</span></p>
+                </div>
+            </div>
+            <img class="side-image" src="https://res.cloudinary.com/doy5drimg/image/upload/v1727586793/rav1xabnot7vly8x48xw.jpg"/>
+        </div>
+    </div>
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const showPassword = document.querySelector('.show-password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                showPassword.textContent = 'Hide';
+            } else {
+                passwordField.type = 'password';
+                showPassword.textContent = 'Show';
+            }
+        }
+        
+        
+        const bird = document.getElementById('bird');
+        const loginContainer = document.getElementById('login-container');
+        
+        bird.addEventListener('click', function() {
+            
+            document.body.style.backgroundImage = "url('https://res.cloudinary.com/doy5drimg/image/upload/v1727586956/eigf9qckmlgaaw2ylsla.jpg')"; 
+            document.body.style.backgroundColor = ""; 
+        
+            
+            bird.style.transform = 'translate(-70vw, -70vh)'; 
+            bird.style.transition = 'transform 1s ease';
+        
+            
+            setTimeout(() => {
+                
+                bird.style.position = 'absolute';
+                bird.style.top = '10px'; 
+                bird.style.left = '20px'; 
+        
+                loginContainer.style.display = 'flex';
+                loginContainer.style.opacity = '1'; 
+            }, 1000); 
+        });
+        
+        
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('login-btn');
+        
+        function updateButtonState() {
+            if (usernameInput.value && passwordInput.value) {
+                loginBtn.classList.add('active');
+                loginBtn.disabled = false;
+            } else {
+                loginBtn.classList.remove('active');
+                loginBtn.disabled = true;
+            }
+        }
+        
+        function resetPage() {
+            loginContainer.style.display = 'none';
+            bird.style.position = '';
+            bird.style.top = '';
+            bird.style.left = '';
+            bird.style.transform = '';
+            document.body.style.backgroundImage = '';
+            document.body.style.backgroundColor = '#87CEEB';
+        }
+        
+        
+        usernameInput.addEventListener('input', updateButtonState);
+        passwordInput.addEventListener('input', updateButtonState);
+        
+        
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            loginBtn.classList.add('loading');
+            setTimeout(() => {
+                loginBtn.classList.remove('loading');
+                resetPage(); 
+            }, 1000); 
+        });
+    </script>
+</body>
+</html>
